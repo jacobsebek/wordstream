@@ -21,6 +21,7 @@ void particles_reset() {
     ppool_len = 0;
 }
 
+//TODO: am I stupid or does this just replace the old particles SOMETIMES?
 void particles_start(int x, int y) {
 
     // Possibly shift the old particles to make space for new ones
