@@ -15,28 +15,26 @@ struct particle {
 };
 
 static struct particle ppool[POOLSIZE];
-static size_t ppool_len = 0;
+static size_t ppool_oldest = 0;
 
 void particles_reset() {
-    ppool_len = 0;
+    // There isn't really a way to remove the particles becuse *THEY'RE THERE* at all times
+    // All I can do is set the velocity to 0, which makes the particle invisible
+    memset(ppool, 0, sizeof(ppool));
+    ppool_oldest = 0;
 }
 
-//TODO: am I stupid or does this just replace the old particles SOMETIMES?
 void particles_start(int x, int y) {
 
-    // Possibly shift the old particles to make space for new ones
-    //TODO: this could be done in a more elaborate way by discarding particles from the oldest
-    ppool_len = (ppool_len <= (POOLSIZE - BURSTSIZE) ? ppool_len : (POOLSIZE - BURSTSIZE) );
+    for (size_t i = 0; i < BURSTSIZE; i++, ppool_oldest = (ppool_oldest+1) % POOLSIZE) {
 
-    for (size_t i = 0; i < BURSTSIZE; i++, ppool_len++) {
-
-        ppool[ppool_len].x = (double)(x);
-        ppool[ppool_len].y = (double)(y);
+        ppool[ppool_oldest].x = (double)(x);
+        ppool[ppool_oldest].y = (double)(y);
 
         double angle = RANDOM() * M_PI * 2;
 
-        ppool[ppool_len].vx = cos(angle)*RANDOM()*2;
-        ppool[ppool_len].vy = sin(angle)*RANDOM()*2;
+        ppool[ppool_oldest].vx = cos(angle)*RANDOM()*2;
+        ppool[ppool_oldest].vy = sin(angle)*RANDOM()*2;
     }
 }
 
@@ -44,7 +42,7 @@ void particles_draw() {
 
     extern SDL_Renderer* ren;
 
-    for (size_t i = 0; i < ppool_len; i++) {
+    for (size_t i = 0; i < POOLSIZE; i++) {
 
         // Make slower particles darker
         double alpha = fabs(ppool[i].vx)*255.0;
