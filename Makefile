@@ -1,4 +1,4 @@
-EXEC=./wordstream.exe
+EXEC=./wordstream
 VPATH=src
 
 SDL_CONFIG?=/usr/local/bin/sdl2-config
