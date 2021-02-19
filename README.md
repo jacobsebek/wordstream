@@ -1,5 +1,5 @@
 # Wordstream
-Wordstream is a tiny (~800 LOC) typing game that I wrote in July 2020. 
+Wordstream is a tiny (~800 lines of code) typing game that I wrote in July 2020. 
 It is heavily inspired by [Bisqwit's WSpeed game](https://bisqwit.iki.fi/wspeed/).
 It uses `SDL2` for rendering, `SDL2_ttf` for fonts and `SDL2_mixer` for simple audio playback.  
 
