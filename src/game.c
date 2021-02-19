@@ -151,10 +151,11 @@ void game_textinput(const char* str) {
         const char* word = dict[word_arr[i].index];
 
         // If we accidentally write a word that cannot even be seen, ignore it
-        if (word_arr[i].x+cached_string_width(1, word)  < 0)
+        if (word_arr[i].x  < 0)
             continue;
 
         if (!strcmp(word, input_str)) {
+
             input_str[0] = '\0'; // Clear the input string
 
             // Add particles for the animation
