@@ -19,5 +19,5 @@ This should work on all Unix-like systems and MinGW on Windows (preferably on `m
 which shouldn't be difficult either.
 
 ## Source code and licensing
-The whole project with all its resources is in the public domain (for clarification, read [the unlicense](LICENSE)).  
+The whole source code with all its resources is in the public domain (for clarification, read [the unlicense](LICENSE)).  
 The source code is available at https://github.com/jacobsebek/wordstream.
